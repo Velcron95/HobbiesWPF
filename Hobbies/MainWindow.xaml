@@ -1,0 +1,42 @@
+﻿<Window x:Class="Hobbies.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hobbies" xmlns:vm="clr-namespace:Hobbies.VM" d:DataContext="{d:DesignInstance Type=vm:HobbiesViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="HobbyGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+       
+        <Button x:Name="BtnAddHobby"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        Margin="10"
+        Padding="5"
+        Command="{Binding AddCommand}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center">Add a Hobby</TextBlock>
+            </StackPanel>
+        </Button>
+
+
+        
+        <ListView Grid.Row="1" 
+                  ItemsSource="{Binding Path=Hobbies}"
+                  DisplayMemberPath="Name"
+                  SelectedItem="{Binding SelectedHobby}"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBox Text="{Binding Path= SelectedHobby.Name, Mode=TwoWay}"></TextBox>
+            <TextBox Text="{Binding Path= SelectedHobby.Description,Mode=TwoWay}"></TextBox>
+        </StackPanel>
+    </Grid>
+</Window>
